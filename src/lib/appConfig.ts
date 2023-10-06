@@ -9,3 +9,5 @@ export const fromEmail = `${appName} <team@${prodOrigin}>`;
 
 export const siteTitle = "SaaS Kitten";
 export const siteMetaDescription = "SaaS Kitten is a starter kit for SaaS applications built with Sveltekit";
+
+export const GA_TRACKING_ID = "G-XXXXXXXXXX";

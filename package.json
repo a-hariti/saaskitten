@@ -19,6 +19,7 @@
     "@lucia-auth/adapter-postgresql": "^2.0.1",
     "@sveltejs/adapter-auto": "^2.0.0",
     "@sveltejs/kit": "^1.20.4",
+    "@types/gtag.js": "^0.0.15",
     "@types/nodemailer": "^6.4.11",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
