@@ -6,7 +6,7 @@ import {
   SEND_EMEAIL_IN_DEV,
   SMTP_SECURE
 } from "$env/static/private";
-import { fromEmail, siteUrl } from "$lib/constants";
+import { fromEmail, siteUrl } from "$lib/appConfig";
 
 import nodemailer from "nodemailer";
 
