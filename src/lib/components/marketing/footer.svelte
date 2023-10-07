@@ -1,5 +1,5 @@
 <script>
-  import { appName } from "$lib/appConfig";
+  import { appName, twitterHandle } from "$lib/appConfig";
   import { Twitter } from "lucide-svelte";
   import Button from "../ui/button/button.svelte";
 </script>
@@ -33,7 +33,12 @@
 
       <!-- Social Brands -->
       <div class="md:text-right space-x-2">
-        <Button href="https://x.com/{appName}" variant="ghost" size="icon" class="rounded-full text-muted-foreground">
+        <Button
+          href="https://x.com/{twitterHandle}"
+          variant="ghost"
+          size="icon"
+          class="rounded-full text-muted-foreground"
+        >
           <Twitter class="w-4 h-4" />
         </Button>
       </div>

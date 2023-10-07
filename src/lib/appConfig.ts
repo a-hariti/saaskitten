@@ -9,8 +9,8 @@ export const fromEmail = `${appName} <team@${prodOrigin}>`;
 
 export const siteTitle = "Acme";
 export const siteMetaDescription = "Acme is a great app, this is the meta description";
-// used on the footer
 
+// used on the footer
 export const twitterHandle = "@acme";
 
 export const GA_TRACKING_ID = "G-XXXXXXXXXX";
