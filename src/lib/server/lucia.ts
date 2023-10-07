@@ -4,9 +4,9 @@ import { pg } from "@lucia-auth/adapter-postgresql";
 import { sveltekit } from "lucia/middleware";
 import { createPool } from "@vercel/postgres";
 import { dev } from "$app/environment";
-import { POSTGRES_URL } from "$env/static/private";
+import { DATABASE_URL } from "$env/static/private";
 
-const pool = createPool({ connectionString: POSTGRES_URL });
+const pool = createPool({ connectionString: DATABASE_URL });
 
 export const auth = lucia({
   // "PROD" if deployed to HTTPS

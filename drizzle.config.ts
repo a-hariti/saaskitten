@@ -3,12 +3,7 @@ import { configDotenv } from "dotenv";
 
 configDotenv();
 
-if (
-  !process.env.POSTGRES_HOST ||
-  !process.env.POSTGRES_USER ||
-  !process.env.POSTGRES_PASSWORD ||
-  !process.env.POSTGRES_DATABASE
-) {
+if (!process.env.PGHOST || !process.env.PGUSER || !process.env.PGPASSWORD || !process.env.PGDATABASE) {
   throw new Error("Missing environment variables");
 }
 
@@ -17,10 +12,10 @@ export default {
   driver: "pg",
   out: "drizzle/migrations",
   dbCredentials: {
-    host: process.env.POSTGRES_HOST,
-    user: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
+    host: process.env.PGHOST,
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
     ssl: true
   }
 } satisfies Config;

@@ -5,8 +5,8 @@ import { migrate } from "drizzle-orm/vercel-postgres/migrator";
 import "dotenv/config";
 
 async function runMigrate() {
-  if (!process.env.POSTGRES_DATABASE) {
-    throw new Error("POSTGRES_DATABASE is not defined");
+  if (!process.env.PGDATABASE) {
+    throw new Error("PGDATABASE is not defined");
   }
   const db = drizzle(sql);
 
