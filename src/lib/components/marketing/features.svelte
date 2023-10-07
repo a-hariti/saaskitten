@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Section from "./section.svelte";
+
   const features = [
     {
       title: "A Pain killer",
@@ -19,9 +21,8 @@
   ];
 </script>
 
-<section class="max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <h2 class="text-2xl text-center sm:text-3xl lg:text-4xl font-semibold">The best way to solve their problem</h2>
-
+<Section>
+  <span slot="title">The best way to solve their problem</span>
   <div class="mt-16 max-w-2xl mx-auto grid sm:grid-cols-2 gap-8 md:gap-12">
     {#each features as feature}
       <div class="flex gap-x-5">
@@ -34,4 +35,4 @@
       </div>
     {/each}
   </div>
-</section>
+</Section>

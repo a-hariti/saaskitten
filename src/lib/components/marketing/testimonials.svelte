@@ -1,4 +1,6 @@
 <script lang="ts">
+  import Section from "./section.svelte";
+
   const testimonials = [
     {
       name: "Josh Tyson",
@@ -33,13 +35,9 @@
   ];
 </script>
 
-<section class="max-w-[85rem] px-4 py-14 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Title -->
-  <div class="mx-auto mb-6 sm:mb-10 md:mb-16 text-center max-w-2xl">
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">Show some social proof</h2>
-
-    <p class="mt-4 text-muted-foreground">Nobody wants to be a guinea pig</p>
-  </div>
+<Section>
+  <span slot="title">Show some social proof</span>
+  <span slot="subtitle">Nobody wants to be a guinea pig</span>
   <!-- End Title -->
 
   <!-- Grid -->
@@ -67,5 +65,4 @@
       <!-- End Card -->
     {/each}
   </div>
-  <!-- End Grid -->
-</section>
+</Section>

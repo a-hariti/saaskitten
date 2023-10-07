@@ -2,17 +2,13 @@
   import { plans } from "$lib/appConfig";
   import { Button } from "../ui/button";
   import { Check } from "lucide-svelte";
+  import Section from "./section.svelte";
 </script>
 
-<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Title -->
-  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-    <h2 class="text-2xl text-center sm:text-3xl lg:text-4xl font-semibold">Pricing</h2>
-    <p class="mt-4 text-muted-foreground">An offer so good they feel stupid saying no</p>
-  </div>
-  <!-- End Title -->
+<Section>
+  <span slot="title">Pricing</span>
+  <span slot="subtitle">An offer so good they feel stupid saying no</span>
 
-  <!-- Grid -->
   <div class="mt-12 grid sm:grid-cols-2 gap-6 mx-auto max-w-screen-sm">
     {#each plans as plan}
       <!-- Card -->
@@ -48,6 +44,4 @@
       <!-- End Card -->
     {/each}
   </div>
-  <!-- End Grid -->
-</div>
-<!-- End Pricing -->
+</Section>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import * as Accordion from "$lib/components/ui/accordion";
+  import Section from "./section.svelte";
 
   const questions = [
     {
@@ -29,14 +30,9 @@
   ];
 </script>
 
-<div class="max-w-screen-md px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Title -->
-  <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
-    <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold">FAQs</h2>
-    <p class="mt-4 text-gray-600">Break buyers resistence and cut the back and forth</p>
-  </div>
-  <!-- End Title -->
-
+<Section>
+  <span slot="title">Frequently asked questions</span>
+  <span slot="subtitle">Break buyers resistence and cut the back and forth</span>
   <div class="mx-auto">
     <Accordion.Root>
       {#each questions as q, i}
@@ -47,4 +43,4 @@
       {/each}
     </Accordion.Root>
   </div>
-</div>
+</Section>
