@@ -2,27 +2,25 @@
   import { Button } from "$lib/components/ui/button";
   import { Menu, X } from "lucide-svelte";
   import { slide } from "svelte/transition";
+  import { appName } from "$lib/appConfig";
 
   let open = false;
 </script>
 
-<nav class="max-w-7xl">
+<nav class="max-w-7xl mx-auto">
   <div class="mx-auto px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
       <div class="flex flex-1 items-center sm:items-stretch">
         <div class="flex flex-shrink-0 items-center">
-          <a href="/">
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-              alt="Your Company"
-            />
+          <a href="/" class="font-bold text-xl">
+            {appName}
           </a>
         </div>
         <!-- Desktop menu -->
         <div class="hidden sm:block sm:ml-6 md:ml-auto">
           <div class="flex space-x-4">
             <Button href="/blog" variant="link">Blog</Button>
+            <Button href="/dashboard" variant="link">Dashboard</Button>
             <Button href="/auth/login" size="sm">Login</Button>
           </div>
         </div>
@@ -68,6 +66,8 @@
     >
       <div class="space-y-1 px-2 pb-3 pt-2">
         <Button class="w-full" href="/blog" variant="link">Blog</Button>
+        <Button class="w-full" href="/dashboard" variant="link">Dashboard</Button>
+
         <Button class="w-full" href="/auth/login" size="sm">Login</Button>
       </div>
     </div>
