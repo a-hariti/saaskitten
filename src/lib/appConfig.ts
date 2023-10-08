@@ -1,11 +1,11 @@
-const prodOrigin = "https://acme.com";
+const prodOrigin = "https://demo.saaskitten.com";
 // link to use in auth emails
 export const siteUrl = import.meta.env.PROD ? prodOrigin : "http://localhost:5173";
 
 // used on the from email address and the head meta and navbar
 export const appName = "AcmeCo";
 
-export const fromEmail = `${appName} <team@${prodOrigin}>`;
+export const fromEmail = `${appName} <team@${new URL(prodOrigin).hostname}>`;
 
 export const siteTitle = "Acme";
 export const siteMetaDescription = "Acme is a great app, this is the meta description";
