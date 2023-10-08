@@ -5,36 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1694096294953,
-      "tag": "0000_faulty_mongu",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1694119897812,
-      "tag": "0001_fine_komodo",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1695646193850,
-      "tag": "0002_lonely_warpath",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1695658776947,
-      "tag": "0003_melodic_wind_dancer",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1695733073024,
-      "tag": "0004_moaning_psynapse",
+      "when": 1696710940740,
+      "tag": "0000_magenta_gertrude_yorkes",
       "breakpoints": true
     }
   ]
