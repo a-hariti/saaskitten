@@ -1,12 +1,12 @@
 import { eq } from "drizzle-orm";
 import { generateRandomString, isWithinExpiration } from "lucia/utils";
-import { db } from "./db";
+import { dbWs } from "./db";
 import { verificationToken, passwordResetToken } from "./db/schema";
 
 const EXPIRES_IN = 1000 * 60 * 60 * 2; // 2 hours
 
 export const generateEmailVerificationToken = async (userId: string) => {
-  const storedUserTokens = await db.select().from(verificationToken).where(eq(verificationToken.userId, userId));
+  const storedUserTokens = await dbWs.select().from(verificationToken).where(eq(verificationToken.userId, userId));
 
   if (storedUserTokens.length > 0) {
     const reusableStoredToken = storedUserTokens.find((token) => {
@@ -17,7 +17,7 @@ export const generateEmailVerificationToken = async (userId: string) => {
     if (reusableStoredToken) return reusableStoredToken.id;
   }
   const token = generateRandomString(63);
-  await db.insert(verificationToken).values({
+  await dbWs.insert(verificationToken).values({
     id: token,
     expires: new Date().getTime() + EXPIRES_IN,
     userId: userId
@@ -26,7 +26,7 @@ export const generateEmailVerificationToken = async (userId: string) => {
 };
 
 export const validateEmailVerificationToken = async (token: string) => {
-  const storedToken = await db.transaction(async (trx) => {
+  const storedToken = await dbWs.transaction(async (trx) => {
     const [storedToken] = await trx.select().from(verificationToken).where(eq(verificationToken.id, token));
     if (!storedToken) throw new Error("Invalid token");
     await trx.delete(verificationToken).where(eq(verificationToken.id, storedToken.userId));
@@ -40,7 +40,7 @@ export const validateEmailVerificationToken = async (token: string) => {
 };
 
 export const generatePasswordResetToken = async (userId: string) => {
-  const storedUserTokens = await db.select().from(passwordResetToken).where(eq(passwordResetToken.userId, userId));
+  const storedUserTokens = await dbWs.select().from(passwordResetToken).where(eq(passwordResetToken.userId, userId));
   if (storedUserTokens.length > 0) {
     const reusableStoredToken = storedUserTokens.find((token) => {
       // check if expiration is within 1 hour
@@ -50,7 +50,7 @@ export const generatePasswordResetToken = async (userId: string) => {
     if (reusableStoredToken) return reusableStoredToken.id;
   }
   const token = generateRandomString(63);
-  await db.insert(passwordResetToken).values({
+  await dbWs.insert(passwordResetToken).values({
     id: token,
     expires: new Date().getTime() + EXPIRES_IN,
     userId
@@ -59,7 +59,7 @@ export const generatePasswordResetToken = async (userId: string) => {
 };
 
 export const validatePasswordResetToken = async (token: string) => {
-  const storedToken = await db.transaction(async (trx) => {
+  const storedToken = await dbWs.transaction(async (trx) => {
     const [storedToken] = await trx.select().from(passwordResetToken).where(eq(passwordResetToken.id, token));
 
     if (!storedToken) throw new Error("Invalid token");
@@ -74,7 +74,7 @@ export const validatePasswordResetToken = async (token: string) => {
 };
 
 export const isValidPasswordResetToken = async (token: string) => {
-  const [storedToken] = await db.select().from(passwordResetToken).where(eq(passwordResetToken.id, token));
+  const [storedToken] = await dbWs.select().from(passwordResetToken).where(eq(passwordResetToken.id, token));
   if (!storedToken) return false;
   const tokenExpires = Number(storedToken.expires); // bigint => number conversion
   if (!isWithinExpiration(tokenExpires)) {

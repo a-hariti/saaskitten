@@ -1,19 +1,24 @@
 import { lucia } from "lucia";
 
+import { neonConfig, Pool } from "@neondatabase/serverless";
+import ws from "ws";
+
+// necessary to make websockets work in node
+neonConfig.webSocketConstructor = ws;
+
 import { pg } from "@lucia-auth/adapter-postgresql";
 import { sveltekit } from "lucia/middleware";
-import { createPool } from "@vercel/postgres";
 import { dev } from "$app/environment";
 import { DATABASE_URL } from "$env/static/private";
 
-const pool = createPool({ connectionString: DATABASE_URL });
+const db = new Pool({ connectionString: DATABASE_URL });
 
 export const auth = lucia({
   // "PROD" if deployed to HTTPS
   env: dev ? "DEV" : "PROD",
   middleware: sveltekit(),
   sessionCookie: { expires: false },
-  adapter: pg(pool, {
+  adapter: pg(db, {
     user: "users",
     session: "user_sessions",
     key: "user_keys"

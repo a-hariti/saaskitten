@@ -8,7 +8,7 @@ import { formSchema } from "./schema";
 import { generateEmailVerificationToken } from "$lib/server/token";
 import { sendEmailVerificationLink } from "$lib/server/email";
 
-import { db } from "$lib/server/db";
+import { dbHttp } from "$lib/server/db";
 import { plans } from "$lib/server/db/schema";
 
 export const load: PageServerLoad = async ({ locals }) => {
@@ -53,7 +53,7 @@ export const actions: Actions = {
       });
       locals.auth.setSession(session); // set session cookie
       const token = await generateEmailVerificationToken(user.userId);
-      await db.insert(plans).values({ userId: user.userId, plan: "free" });
+      await dbHttp.insert(plans).values({ userId: user.userId, plan: "free" });
       await sendEmailVerificationLink(session.user.email, token);
     } catch (e) {
       console.error(e);

@@ -1,5 +1,6 @@
 import { auth } from "$lib/server/lucia";
 import { validateEmailVerificationToken } from "$lib/server/token";
+import { error } from "@sveltejs/kit";
 
 import type { RequestHandler } from "./$types";
 
@@ -16,7 +17,8 @@ export const GET: RequestHandler = async ({ params, locals }) => {
     });
     locals.auth.setSession(session);
     return new Response(null, { status: 302, headers: { Location: "/dashboard" } });
-  } catch {
-    return new Response("Invalid email verification link", { status: 400 });
+  } catch(e) {
+    console.error(e);
+    throw error(400, "Invalid email verification link");
   }
 };

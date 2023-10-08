@@ -1,15 +1,15 @@
-import { createClient } from "@vercel/postgres";
-import { drizzle } from "drizzle-orm/vercel-postgres";
-import { migrate } from "drizzle-orm/vercel-postgres/migrator";
+import { drizzle } from "drizzle-orm/neon-http";
+import { migrate } from "drizzle-orm/neon-http/migrator";
 
 import "dotenv/config";
+
+import { neon } from "@neondatabase/serverless";
 
 async function runMigrate() {
   if (!process.env.PGDATABASE) {
     throw new Error("PGDATABASE is not defined");
   }
-  const client = createClient({ connectionString: process.env.DATABASE_URL });
-  await client.connect();
+  const client = neon(process.env.DATABASE_URL!);
   const db = drizzle(client);
 
   console.log("Running migrations...");
@@ -19,8 +19,6 @@ async function runMigrate() {
   const end = Date.now();
 
   console.log(`✅ Migrations completed in ${end - start}ms`);
-
-  await client.end();
   process.exit(0);
 }
 
