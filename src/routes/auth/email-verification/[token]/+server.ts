@@ -7,7 +7,12 @@ import type { RequestHandler } from "./$types";
 export const GET: RequestHandler = async ({ params, locals }) => {
   const { token } = params;
   try {
-    const userId = await validateEmailVerificationToken(token);
+    let userId;
+    try {
+      userId = await validateEmailVerificationToken(token);
+    } catch (e) {
+      throw error(400, (e as Error).message);
+    }
     const user = await auth.getUser(userId);
     await auth.invalidateAllUserSessions(user.userId);
     await auth.updateUserAttributes(user.userId, { email_verified: true });
@@ -17,8 +22,13 @@ export const GET: RequestHandler = async ({ params, locals }) => {
     });
     locals.auth.setSession(session);
     return new Response(null, { status: 302, headers: { Location: "/dashboard" } });
-  } catch(e) {
-    console.error(e);
-    throw error(400, "Invalid email verification link");
+  } catch (e) {
+    if (e instanceof Error) {
+      console.error(e);
+      throw error(500, "An unknown error occurred");
+    } else {
+      // probably a 400 error from an invalid or expired link
+      throw e;
+    }
   }
 };
