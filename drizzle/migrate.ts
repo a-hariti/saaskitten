@@ -1,4 +1,4 @@
-import { sql } from "@vercel/postgres";
+import { createClient } from "@vercel/postgres";
 import { drizzle } from "drizzle-orm/vercel-postgres";
 import { migrate } from "drizzle-orm/vercel-postgres/migrator";
 
@@ -8,7 +8,9 @@ async function runMigrate() {
   if (!process.env.PGDATABASE) {
     throw new Error("PGDATABASE is not defined");
   }
-  const db = drizzle(sql);
+  const client = createClient({ connectionString: process.env.DATABASE_URL });
+  await client.connect();
+  const db = drizzle(client);
 
   console.log("Running migrations...");
 
@@ -18,6 +20,7 @@ async function runMigrate() {
 
   console.log(`✅ Migrations completed in ${end - start}ms`);
 
+  await client.end();
   process.exit(0);
 }
 
