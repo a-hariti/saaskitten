@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-  <title>SaasKitten | a Sveltekit Saas starter</title>
+  <title>{title}</title>
   <meta name="title" content={title} />
   <meta property="og:title" content={title} />
 
