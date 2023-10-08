@@ -14,7 +14,7 @@
     "db:gen": "drizzle-kit generate:pg",
     "db:migrate": "tsx ./drizzle/migrate.ts",
     "db:studio": "drizzle-kit studio",
-    "deploy": "npm run db:gen && npm run db:migrate && npm run build"
+    "deploy": "npm run build && npm run db:gen && npm run db:migrate"
   },
   "devDependencies": {
     "@lucia-auth/adapter-postgresql": "^2.0.1",
