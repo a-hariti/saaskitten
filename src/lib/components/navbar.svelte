@@ -7,51 +7,49 @@
   let open = false;
 </script>
 
-<nav class="max-w-7xl mx-auto">
-  <div class="mx-auto px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="flex flex-1 items-center sm:items-stretch">
-        <div class="flex flex-shrink-0 items-center">
-          <a href="/" class="font-bold text-xl">
-            {appName}
-          </a>
+<nav class="container mx-auto">
+  <div class="relative flex h-16 items-center justify-between">
+    <div class="flex flex-1 items-center sm:items-stretch">
+      <div class="flex flex-shrink-0 items-center">
+        <a href="/" class="font-bold text-xl">
+          {appName}
+        </a>
+      </div>
+      <!-- Desktop menu -->
+      <div class="hidden sm:block sm:ml-6 md:ml-auto">
+        <div class="flex space-x-4">
+          <Button href="/blog" variant="link">Blog</Button>
+          <Button href="/dashboard" variant="link">Dashboard</Button>
+          <Button href="/auth/login" size="sm">Sign in</Button>
         </div>
-        <!-- Desktop menu -->
-        <div class="hidden sm:block sm:ml-6 md:ml-auto">
-          <div class="flex space-x-4">
-            <Button href="/blog" variant="link">Blog</Button>
-            <Button href="/dashboard" variant="link">Dashboard</Button>
-            <Button href="/auth/login" size="sm">Login</Button>
-          </div>
-        </div>
-        <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
-          <!-- Mobile menu open close button-->
-          {#if open}
-            <Button
-              variant="link"
-              size="icon"
-              type="button"
-              on:click={() => (open = false)}
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Close main menu</span>
-              <X class="block h-6 w-6" aria-hidden="true" />
-            </Button>
-          {:else}
-            <Button
-              variant="link"
-              size="icon"
-              type="button"
-              on:click={() => (open = true)}
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open main menu</span>
-              <Menu class="block h-6 w-6" aria-hidden="true" />
-            </Button>
-          {/if}
-        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center sm:hidden">
+        <!-- Mobile menu open close button-->
+        {#if open}
+          <Button
+            variant="link"
+            size="icon"
+            type="button"
+            on:click={() => (open = false)}
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Close main menu</span>
+            <X class="block h-6 w-6" aria-hidden="true" />
+          </Button>
+        {:else}
+          <Button
+            variant="link"
+            size="icon"
+            type="button"
+            on:click={() => (open = true)}
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <Menu class="block h-6 w-6" aria-hidden="true" />
+          </Button>
+        {/if}
       </div>
     </div>
   </div>

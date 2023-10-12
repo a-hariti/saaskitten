@@ -12,7 +12,7 @@
 
 <Seo title="Blog" description="A collection of posts about {appName}" {url} />
 
-<section class="min-h-screen mx-auto mt-10 lg:mt-20 max-w-screen-md">
+<section class="container min-h-screen mx-auto mt-10 lg:mt-20">
   <h1 class="text-4xl lg:text-6xl font-bold mb-14 mx-auto">Latest blog posts</h1>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-14 mx-auto">
     {#each data.posts as post}

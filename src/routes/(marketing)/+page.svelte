@@ -7,10 +7,11 @@
   import Testimonials from "$lib/components/marketing/testimonials.svelte";
   import Pricing from "$lib/components/marketing/pricing.svelte";
   import Faqs from "$lib/components/marketing/faqs.svelte";
-  import Footer from "$lib/components/marketing/footer.svelte";
 
   const url = $page.url.toString();
 </script>
+
+<!-- Header and Footer inherited from layout -->
 
 <Seo title={siteTitle} description={siteMetaDescription} {url} />
 <Hero />
@@ -18,4 +19,3 @@
 <Testimonials />
 <Pricing />
 <Faqs />
-<Footer />
