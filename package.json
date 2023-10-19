@@ -15,7 +15,7 @@
     "migrate:dev": "prisma migrate dev",
     "migrate:prod": "prisma migrate deploy",
     "db:studio": "prisma studio",
-    "deploy": "npm run build && npm run db:migrate"
+    "postbuild": "npm run migrate:prod"
   },
   "devDependencies": {
     "@lucia-auth/adapter-prisma": "^3.0.2",
