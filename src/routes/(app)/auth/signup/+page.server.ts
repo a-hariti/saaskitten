@@ -8,8 +8,8 @@ import { formSchema } from "./schema";
 import { generateEmailVerificationToken } from "$lib/server/token";
 import { sendEmailVerificationLink } from "$lib/server/email";
 
-import { dbHttp } from "$lib/server/db";
-import { plans } from "$lib/server/db/schema";
+import { db } from "$lib/server/database";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library";
 
 export const load: PageServerLoad = async ({ locals }) => {
   const session = await locals.auth.validate();
@@ -53,12 +53,17 @@ export const actions: Actions = {
       });
       locals.auth.setSession(session); // set session cookie
       const token = await generateEmailVerificationToken(user.userId);
-      await dbHttp.insert(plans).values({ userId: user.userId, plan: "free" });
+      await db.plan.create({
+        data: {
+          user_id: user.userId,
+          plan: "free"
+        }
+      });
       await sendEmailVerificationLink(session.user.email, token);
     } catch (e) {
       console.error(e);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((e as any).code == "23505") {
+      if (e instanceof PrismaClientKnownRequestError && e.code == "P2002") {
         return message(form, "Account already exists", { status: 400 });
       }
       return message(form, "An unknown error occurred", { status: 500 });

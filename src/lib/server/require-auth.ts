@@ -16,6 +16,6 @@ export const requireLogin = async (auth: App.Locals["auth"]) => {
   if (!user.email_verified) {
     throw redirect(302, "/auth/email-verification");
   }
-  const plan = await db.plan.findFirst({ where: { user_id: user.userId } })
+  const plan = await db.plan.findFirst({ where: { user_id: user.userId } });
   return { user: { ...user, plan: plan!.plan } };
 };

@@ -1,14 +1,12 @@
 import { auth } from "$lib/server/lucia";
 import { fail } from "@sveltejs/kit";
-import { dbHttp } from "$lib/server/db";
-import { users } from "$lib/server/db/schema";
 import { generatePasswordResetToken } from "$lib/server/token";
 import { sendPasswordResetLink } from "$lib/server/email";
 
 import type { Actions, PageServerLoad } from "./$types";
-import { eq } from "drizzle-orm";
 import { message, setError, superValidate } from "sveltekit-superforms/server";
 import { formSchema } from "./schema";
+import { db } from "$lib/server/database";
 
 export const load: PageServerLoad = async () => {
   return {
@@ -26,7 +24,7 @@ export const actions: Actions = {
 
     const { email } = form.data;
     try {
-      const [storedUser] = await dbHttp.select().from(users).where(eq(users.email, email));
+      const storedUser = await db.user.findFirst({ where: { email: email.toLowerCase() } });
 
       if (!storedUser) {
         return setError(form, "User does not exist", { status: 404 });

@@ -13,6 +13,8 @@ model User {
   id                       String                   @id @map("_id")
   email                    String                   @unique()
   email_verified           Boolean                  @default(false)
+  created_at               DateTime                 @default(now())
+  updated_at               DateTime                 @updatedAt
   email_verification_token EmailVerificationToken[]
   password_reset_token     PasswordResetToken[]
   plan                     Plan?
