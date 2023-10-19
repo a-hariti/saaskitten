@@ -14,12 +14,12 @@
       <li
         class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['·'] before:text-gray-300 dark:before:text-gray-600"
       >
-        <Button variant="link" href="/about" class="font-normal text-muted-foreground p-0">About</Button>
+        <Button variant="link" href="#" class="font-normal text-muted-foreground p-0">About</Button>
       </li>
       <li
         class="inline-block relative pr-8 last:pr-0 last-of-type:before:hidden before:absolute before:top-1/2 before:right-3 before:-translate-y-1/2 before:content-['·'] before:text-gray-300 dark:before:text-gray-600"
       >
-        <Button variant="link" href="/privacy-policy" class="font-normal text-muted-foreground p-0"
+        <Button variant="link" href="#" class="font-normal text-muted-foreground p-0"
           >Privacy Policy</Button
         >
       </li>
