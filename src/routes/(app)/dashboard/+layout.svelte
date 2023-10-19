@@ -29,7 +29,7 @@
     <div class="font-bold text-xl p-4">
       {appName}
     </div>
-    <nav class={cn("flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1")}>
+    <nav class="flex flex-col">
       {#each sidebarNavItems as item}
         {@const active = $page.url.pathname === item.href}
         <Button
