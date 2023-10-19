@@ -1,7 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import { plans } from "$lib/server/db/schema";
-import { dbHttp } from "$lib/server/db";
-import { eq } from "drizzle-orm";
+import { db } from "./database";
 
 /**
  * validate session and return user with plan
@@ -18,7 +16,6 @@ export const requireLogin = async (auth: App.Locals["auth"]) => {
   if (!user.email_verified) {
     throw redirect(302, "/auth/email-verification");
   }
-
-  const [plan] = await dbHttp.select().from(plans).where(eq(plans.userId, user.userId));
-  return { user: { ...user, plan: plan.plan } };
+  const plan = await db.plan.findFirst({ where: { user_id: user.userId } })
+  return { user: { ...user, plan: plan!.plan } };
 };
