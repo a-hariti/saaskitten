@@ -1,4 +1,4 @@
-# SaasKitten - Open Source SvelteKit SaaS Starter Kit
+# 🐱 SaasKitten - Open Source SvelteKit SaaS Starter Kit
 
 This is a SaaS starter kit built with SvelteKit and TailwindCSS. It is designed to be a starting point for building a SaaS application (fast).
 
