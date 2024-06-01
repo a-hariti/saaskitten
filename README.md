@@ -21,7 +21,7 @@ If you find it useful please give it a star ⭐.
 - [x] 🔍 SEO friendly
 - [x] 📝 Blog with mdsvex
 - [x] 💌 Emails with any email service provider
-- [ ]⚙️ Billing settings
+- [ ] ⚙️ Billing settings
 - [ ] 📑 Docs
 - [ ] ⚡AI Integration with OpenAI
 - [ ] 👷 Monorepo setup for docs
