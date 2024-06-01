@@ -1,7 +1,8 @@
 {
   "name": "kit",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
