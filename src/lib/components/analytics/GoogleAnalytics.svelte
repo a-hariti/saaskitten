@@ -14,7 +14,7 @@
 </script>
 
 <svelte:head>
-  {#if isProd || true}
+  {#if isProd}
     <script async src="https://www.googletagmanager.com/gtag/js?id={GA_TRACKING_ID}">
     </script>
     <!-- silence the XSS warning, because we are controlling the script content with no user input -->
